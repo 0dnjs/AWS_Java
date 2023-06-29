@@ -21,25 +21,30 @@ public class String03 {
 				for(int j  = 0; j < addressArray2.length; j++) {
 					tempArray[j] = addressArray2[j];
 				}
+				// 마지막 배열 공간에 새로운 값을 대입한다.
+				tempArray[addressArray2.length] = addressArray[i];
+				// 새로운 배열을 기존의 배열 변수에 대입한다.
+				addressArray2 = tempArray;
+			} else if(addressArray[i].contains("창원시")) {
 				// 기존 배열의 공간보다 1이 큰 새로운 배열을 생성한다.
-				String[] tempArray = new String[addressArray3.length+1];
+				String[] tempArray1 = new String[addressArray3.length+1];
 				//기존의 배열에 있는 정보를 새로운 배열에 옮긴다.
 				for(int j  = 0; j < addressArray3.length; j++) {
-					tempArray[j] = addressArray3[j];
+					tempArray1[j] = addressArray3[j];
 				}
 				// 마지막 배열 공간에 새로운 값을 대입한다.
-				tempArray[addressArray3.length] = addressArray[i];
+				tempArray1[addressArray3.length] = addressArray[i];
 				// 새로운 배열을 기존의 배열 변수에 대입한다.
-				addressArray3 = tempArray;
-			}
+				addressArray3 = tempArray1;
 		}
 		System.out.println("[부산시]");
-		for(int i = 0; i < addressArray2.length; i++) {
-			System.out.println(addressArray2[i]);
+		for(int i1 = 0; i1 < addressArray2.length; i1++) {
+			System.out.println(addressArray2[i1]);
 		}
 		System.out.println("[창원시]");
-		for(int i = 0; i < addressArray3.length; i++) {
-			System.out.println(addressArray3[i]);
+		for(int i1 = 0; i1 < addressArray3.length; i1++) {
+			System.out.println(addressArray3[i1]);
 		}
 	}
-}
+	}
+	}
