@@ -1,5 +1,6 @@
 package ch25_gui;
 
+import java.awt.CardLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +20,11 @@ public class GUIMain1 extends JFrame {
 	private final String ADMIN_USERNAME = "admin";
 	private final String ADMIN_PASSWORD = "admin";
 
-	private JPanel contentPane;
+	private CardLayout mainCardLayout;
+	
+	private JPanel mainCardPanel;
+	private JPanel loginPanel;
+	private JPanel homePanel;
 	private JTextField usernametextField;
 	private JPasswordField passwordField;
 
@@ -45,11 +50,15 @@ public class GUIMain1 extends JFrame {
 	public GUIMain1() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		mainCardPanel = new JPanel();
+		mainCardLayout = new CardLayout();
+		mainCardPanel.setLayout(mainCardLayout);
+		setContentPane(mainCardPanel);
+		
+		loginPanel = new JPanel();
+		loginPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		loginPanel.setLayout(null);
+		mainCardPanel.add(loginPanel, "loginPanel");
 		
 		JButton signinBtn = new JButton("Login");
 		signinBtn.addMouseListener(new MouseAdapter() {
@@ -62,7 +71,8 @@ public class GUIMain1 extends JFrame {
 					// ↑ 팝업창 띄우는 위치, 내용, 제목, 아이콘
 					return;
 				}
-				JOptionPane.showMessageDialog(contentPane, "환영합니다.", "로그인 성공", JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(loginPanel, "환영합니다.", "로그인 성공", JOptionPane.PLAIN_MESSAGE);
+				mainCardLayout.show(mainCardPanel, "homePanel");
 			}
 		});
 		signinBtn.addActionListener(new ActionListener() {
@@ -70,15 +80,19 @@ public class GUIMain1 extends JFrame {
 			}
 		});
 		signinBtn.setBounds(135, 176, 182, 33);
-		contentPane.add(signinBtn);
+		loginPanel.add(signinBtn);
 		
 		usernametextField = new JTextField();
 		usernametextField.setBounds(135, 119, 182, 33);
-		contentPane.add(usernametextField);
+		loginPanel.add(usernametextField);
 		usernametextField.setColumns(10);
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(135, 61, 182, 33);
-		contentPane.add(passwordField);
+		loginPanel.add(passwordField);
+		
+		homePanel = new JPanel();
+		homePanel.setLayout(null);
+		mainCardPanel.add(homePanel, "homePanel");
 	}
 }

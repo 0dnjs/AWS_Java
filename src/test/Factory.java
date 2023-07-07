@@ -1,4 +1,4 @@
-package ch14_싱글톤;
+package test;
 
 import java.time.LocalDate;
 

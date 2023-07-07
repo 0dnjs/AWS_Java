@@ -8,13 +8,15 @@ public class Casting {
 		programs[1] = new C();
 		
 		for(int i = 0; i < programs.length; i++) {
-			String[] arrays = new String[2];
-//			arrays[0]
- 			for(int j =0; j < arrays.length; j++) {
-				System.out.println(arrays[i]);
-			}
-			
-		}
+			programs[i].develop();
+ 		if(programs[i].getClass() == Java.class) {
+ 			Java java = (Java) programs[i];
+ 			java.garbageCollection();
+ 		} else if(programs[i].getClass() == C.class) {
+ 			C c = (C) programs[i];
+ 			c.defineStructure();
+ 		}
 	}
 
+	}
 }
