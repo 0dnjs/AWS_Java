@@ -6,8 +6,8 @@ public class Main {
 		
 	Calculator calculator = new Calculator();
 	
-	System.out.println(calculator.add(10, 20));
-	System.out.println(calculator.sub(200, 100));
+	System.out.println(calculator.mul(5, 2));
+	System.out.println(calculator.div(200, 40));
 		
 	}
 

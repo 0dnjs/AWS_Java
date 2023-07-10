@@ -55,9 +55,12 @@ public class ServerApplication {
 					
 					while(!Thread.interrupted()) {
 						Socket socket = serverSocket.accept();
+						ConnectedSocket connectedSocket = new ConnectedSocket(socket);
+						connectedSocket.start();
+						ConnectedClientController.getInstance().getConnectedSockets().add(connectedSocket);
 						System.out.println("접속!!");
 						System.out.println(socket.getInetAddress().getHostAddress());
-						}
+					}
 					
 				} catch (BindException e) {
 					System.out.println("이미 사용중인 포트번호입니다."); 
@@ -96,6 +99,14 @@ public class ServerApplication {
 		
 				
 			default:System.out.println("다시 선택하세요.");
+			}
+			
+			if(serverSocket == null) {
+				try {
+					connectionThread.join(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 
 		}
