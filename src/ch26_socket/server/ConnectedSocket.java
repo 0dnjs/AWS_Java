@@ -3,27 +3,29 @@ package ch26_socket.server;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
 
+import ch26_socket.simpleGUI.server.SimpleGUIServer;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class ConnectedSocket extends Thread{
-	
+public class ConnectedSocket extends Thread {
+
 	private final Socket socket;
-	
+
 	@Override
 	public void run() {
 		BufferedReader bufferedReader = null;
-		
+
 		try {
-			while(true) {
-			bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			String requestBody = bufferedReader.readLine();
-			System.out.println("입력데이터: " + requestBody);
+			while (true) {
+
+				bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+				String requestBody = bufferedReader.readLine();
+				System.out.println("입력데이터: " + requestBody);
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
